@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgba(127, 255, 212, 0.096);
+}
+.boxPessoa{
+  margin-left: 50px;
+  margin-top: 50px;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 7px;
+  display: inline-grid;
+  background-color: rgba(128, 128, 128, 0.089);
+}
+.navbar {
+  overflow: hidden;
+  background-color: rgba(128, 128, 128, 0.089);
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.inputTxt{
+  background-color: rgba(127, 255, 212, 0.096);
+  height: 2rem;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  
+  
+}
+.navbar a {
+  float: left;
+  display: block;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: rgba(127, 255, 212, 0.096);
+  color: rgb(0, 0, 0);
+}
+
+.nome{
+ margin-left: 15px;
+ margin-top: 10px;
+}
+.description{
+  margin-left: 50px;
+}
+.image{
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-left: 5px;
+  display: block;
+  margin: 10px auto;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
