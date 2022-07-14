@@ -11,45 +11,59 @@ const Forms = () => {
         setUser(evt.target.value);
         console.log(user);
     };
-    const [user, setUser] = useState("user padrao");
-    const [password, setPassword] = useState("pass padrao");
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (user.name &&
+            user.password) {
+            const newUser = { ...user, id: new Date().getTime().toString() };
+            setUsers([...users, newUser]);
+            setUser({ name: '', password: '' });
+        }
 
-
-    const handleChangeUser = (evt) => {
-        setUser(evt.target.value);
     }
-    const handleChangePass = (evt) => {
-        setPassword(evt.target.value);
+
+
+    const [user, setUser] = useState({ name: '', password: '' });
+
+    const [users, setUsers] = useState([]);
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        const name = e.target.name
+        setUser({ ...user, [name]: value })
+
     }
 
 
     return (
 
-        <div>
-            <form onSubmit={onFormSubmit}>
+        <form className='form' onSubmit={handleSubmit}>
+            <div className='form-control gap-50'>
                 <Row className="mb-3">
                     <Form.Group as={Col} md="4" >
-                        <Form.Label htmlFor="inputUserName5">User Name: {user}</Form.Label>
+                        <Form.Label htmlFor="inputUserName5">User Name: {user.name}</Form.Label>
                         <Form.Control
-                            value={user}
+                            value={user.name}
                             type="username"
+                            name="name"
                             id="inputUserName5"
                             aria-describedby="passwordHelpBlock"
-                            onChange={handleChangeUser}
+                            onChange={handleChange}
                         />
 
                     </Form.Group>
 
 
-                    <Form.Group as={Col} md="4" controlId="formBasicPassword"   >
+                    <Form.Group as={Col} md="4" >
 
-                        <Form.Label htmlFor="inputPassword5">Password:{password }</Form.Label>
+                        <Form.Label htmlFor="inputPassword5">Password:{user.password}</Form.Label>
                         <Form.Control
                             type="password"
                             id="inputPassword5"
+                            name="password"
                             aria-describedby="passwordHelpBlock"
-                            onChange={handleChangePass}
-                            value={password}
+                            onChange={handleChange}
+                            value={user.password}
                         />
                         <Form.Text id="passwordHelpBlock">
                             Your password must be 8-20 characters long, contain letters and numbers, and
@@ -62,10 +76,9 @@ const Forms = () => {
                 </Row>
                 <Button type="submit">Submit form</Button>
 
+            </div>
+        </form>
 
-            </form>
-
-        </div >
     );
 }
 

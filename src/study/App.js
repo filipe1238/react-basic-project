@@ -133,12 +133,13 @@ const InputWithLabel = ({ id, value, type, isFocused, onInputChange, children })
 
   return (
     <>
-      <Form.Label htmlFor='searc'>{children} </Form.Label>
+      <Form.Label htmlFor='search'>{children} </Form.Label>
       &nbsp;
       <Form.Control
         id={id}
         type={type}
         value={value}
+        name="search"
         autoFocus={isFocused}
         onChange={onInputChange}
       />
@@ -154,7 +155,7 @@ const SearchForm = ({
 }) => (
   <form onSubmit={onSearchSubmit}>
 
-    <div class="rows justify-content-start">
+    <div className="rows justify-content-start">
       <InputWithLabel
         id="search"
         value={searchTerm}
