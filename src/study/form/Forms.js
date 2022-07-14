@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Form, Button, Col, Row } from 'react-bootstrap';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBar from './NavBar.js';
+import NavBar from '../NavBar.js';
 
 
 const Forms = () => {
@@ -33,7 +33,14 @@ const Forms = () => {
         setUser({ ...user, [name]: value })
 
     }
-
+    const requiredMessage = (e) => {
+        if (e.target.value === "") {
+            e.target.setCustomValidity("The " +
+                e.target.name
+                + " is required !")
+        }
+        e.target.setCustomValidity("")
+    }
 
     return (
 
@@ -43,11 +50,13 @@ const Forms = () => {
                     <Form.Group as={Col} md="4" >
                         <Form.Label htmlFor="inputUserName5">User Name: {user.name}</Form.Label>
                         <Form.Control
+                            required
                             value={user.name}
                             type="username"
                             name="name"
+                            onInvalid={e => e.target.setCustomValidity('Enter User Name Here')}
+                            onInput={e => e.target.setCustomValidity('')}
                             id="inputUserName5"
-                            aria-describedby="passwordHelpBlock"
                             onChange={handleChange}
                         />
 
@@ -58,7 +67,10 @@ const Forms = () => {
 
                         <Form.Label htmlFor="inputPassword5">Password:{user.password}</Form.Label>
                         <Form.Control
+                            required
                             type="password"
+                            onInvalid={e => e.target.setCustomValidity('Enter Password Here')}
+                            onInput={e => e.target.setCustomValidity('')}
                             id="inputPassword5"
                             name="password"
                             aria-describedby="passwordHelpBlock"
@@ -74,9 +86,16 @@ const Forms = () => {
 
 
                 </Row>
-                <Button type="submit">Submit form</Button>
 
+                <Button type="submit">Submit form</Button>
             </div>
+            {users.map((user) => {
+                return <div key={user.id}>
+
+                    {user.name}
+                </div>
+            })}
+
         </form>
 
     );

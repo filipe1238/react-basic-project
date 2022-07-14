@@ -1,6 +1,6 @@
 import React from 'react';
 import App from './study/App';
-import Forms from './study/Forms';
+import Forms from './study/form';
 import NavBar from './study/NavBar'
 import Test from './study/Test'
 import DatatableComponent from './study/Datatable';
