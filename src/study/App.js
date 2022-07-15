@@ -155,7 +155,7 @@ const SearchForm = ({
 }) => (
   <form onSubmit={onSearchSubmit}>
 
-    <div className="rows justify-content-start">
+    <div className="rows">
       <InputWithLabel
         id="search"
         value={searchTerm}
@@ -165,7 +165,7 @@ const SearchForm = ({
         <strong>Search:</strong>
       </InputWithLabel>
       <Form.Text className="text-muted">
-        We'll never share your email with anyone else.
+        You'r searching for: <strong>{searchTerm}</strong>
       </Form.Text>
       <div class="col-4">
         <button type="submit" className='btn btn-dark' disabled={!searchTerm}>
