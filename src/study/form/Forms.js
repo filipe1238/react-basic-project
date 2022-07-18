@@ -1,8 +1,11 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useReducer, useContext } from 'react';
 import { Form, Button, Col, Row, Container } from 'react-bootstrap';
 import { reducer } from './reducer'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+
+
+const UserContext = React.createContext();
 
 const Forms = () => {
 
@@ -28,21 +31,15 @@ const Forms = () => {
     const [state, dispatch] = useReducer(reducer, defaultState);
     const [user, setUser] = useState({ name: '', password: '' });
 
-
-
     const handleChange = (e) => {
         const value = e.target.value;
         const name = e.target.name
         setUser({ ...user, [name]: value })
 
     }
-    const requiredMessage = (e) => {
-        if (e.target.value === "") {
-            e.target.setCustomValidity("The " +
-                e.target.name
-                + " is required !")
-        }
-        e.target.setCustomValidity("")
+    const contextProps = {
+        users: state.users,
+        dispatch
     }
 
     return (
@@ -107,27 +104,37 @@ const Forms = () => {
                         <Form.Label><strong>Remove</strong></Form.Label>
                     </Container>
                 </div>
-                {state.users.map((user) => {
-                    return ( //needs to return the one with the 'key' prop, or else it will give the warning about id
-                        <div className='form-control d-flex' key={user.id}>
-                            <Container>
-                                {user.name}
-                            </Container>
-                            <Container>
-                                {user.password}
-                            </Container>
-                            <Container>
-                                <button type="button" className="btn btn-white" onClick={() => dispatch({ type: 'DELETE_USER', payload: user.id })}>
-                                    <i className="bi bi-trash-fill"></i>
-                                </button>
-                            </Container>
-                        </div>
-                    )
-                })}
+                <UserContext.Provider value={contextProps}>
+                    <UserList />
+                </UserContext.Provider>
             </Container>
+            <hr />
         </>
 
     );
 }
+const UserList = () => {
+    const { dispatch,users } = useContext(UserContext);
+    return (
+        <>
+            {users.map((user) => {
+                //needs the return here
+                return <div className='form-control d-flex' key={user.id}>
+                    <Container>
+                        {user.name}
+                    </Container>
+                    <Container>
+                        {user.password}
+                    </Container>
+                    <Container>
+                        <button type="button" className="btn btn-white" onClick={() => dispatch({ type: 'DELETE_USER', payload: user.id })}>
+                            <i className="bi bi-trash-fill"></i>
+                        </button>
+                    </Container>
+                </div>
+            })}
+        </>
 
+    );
+}
 export default Forms;

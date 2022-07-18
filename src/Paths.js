@@ -5,10 +5,9 @@ import NavBar from './study/NavBar'
 import Test from './study/Test'
 import DatatableComponent from './study/Datatable';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import CarouselTest from './CarouselTest';
-// Importing the Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Paths = () => {
     return (

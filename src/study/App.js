@@ -8,6 +8,7 @@ import {
   Button
 } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 import ParentComponent from './Test';
 import NavBar from './NavBar.js';
@@ -103,7 +104,7 @@ const storiesReducer = (state, action) => {
 const Item = ({ item, onRemoveItem }) => {
 
   return (
-    <div className="d-grid gap-2 d-md-flex justify-content-mdNavBar-start">
+    <div className="d-flex justify-content-start">
       <span>
         <a href={item.url}>{item.title}</a>
       </span>
@@ -112,21 +113,24 @@ const Item = ({ item, onRemoveItem }) => {
       <span>{item.points}</span>
       <button type="button" className="btn btn-outline-secondary"
         onClick={() => onRemoveItem(item)}>
-        Dismiss
+        Dismiss 
       </button>
     </div>
   );
 };
 
-const List = ({ list, onRemoveItem }) =>
-  list.map(item => (
-    <Item
-      key={item.objectID}
-      item={item}
-      onRemoveItem={onRemoveItem}
-    />
-  ));
-
+const List = ({ list, onRemoveItem }) => {
+  return (
+    list.map(item => (
+      <Item
+        key={item.objectID}
+        item={item}
+        onRemoveItem={onRemoveItem}
+      />
+    )
+    )
+  );
+}
 
 
 const InputWithLabel = ({ id, value, type, isFocused, onInputChange, children }) => {
@@ -155,7 +159,7 @@ const SearchForm = ({
 }) => (
   <form onSubmit={onSearchSubmit}>
 
-    <div className="rows">
+    <div className="rows form-control">
       <InputWithLabel
         id="search"
         value={searchTerm}
@@ -255,7 +259,7 @@ const App = () => {
           onSearchInput={handleSearchInput}
           onSearchSubmit={handleSearchSubmit}
         />
-        {/*a true && 'Hello World' always evaluates to ‘Hello World’. Afalse && 'Hello World' 
+        {/*a true && 'Hello World' always evaluates to ‘Hello World’. A false && 'Hello World' 
           always evaluates to false.*/
         }
         {stories.isError && <p>Something went wrong ...</p>}
@@ -263,7 +267,35 @@ const App = () => {
         {stories.isLoading ? (
           <p>Loading ...</p>
         ) : (
-          <List list={stories.data} onRemoveItem={handleRemoveStory} />
+          <Container fluid >
+            <Container>
+              <Row>
+                <Col xs={{ order: 'first' }}>
+                  <button type="button" className="btn btn-white" >
+                    <i class="bi bi-chevron-compact-down"> Sort by name</i>
+                  </button></Col>
+                <Col xs>
+                  <button type="button" className="btn btn-white" >
+                    <i class="bi bi-chevron-compact-down"> Sort by name</i>
+                  </button></Col>
+                <Col xs={{ order: 'last' }}>
+                  <button type="button" className="btn btn-white" >
+                    <i class="bi bi-chevron-compact-down"> Sort by name</i>
+                  </button></Col>
+                <Col xs={{ order: 'last' }}>
+                  <button type="button" className="btn btn-white" >
+                    <i class="bi bi-chevron-compact-down"> Sort by name</i>
+                  </button></Col>
+                <Col xs={{ order: 'last' }}>
+                  <button type="button" className="btn btn-white" >
+                    <i class="bi bi-chevron-compact-down"> Sort by name</i>
+                  </button></Col>
+              </Row>
+            <Row>
+            <List list={stories.data} onRemoveItem={handleRemoveStory} />
+            </Row>
+            </Container>
+          </Container>
         )}
       </Container>
 

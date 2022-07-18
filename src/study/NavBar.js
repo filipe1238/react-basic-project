@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Switch, Navigate } from 'react-router-dom';
-
 import { Navbar, Container, NavDropdown, Nav } from 'react-bootstrap';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -19,7 +17,7 @@ const NavBar = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/CarouselTest">Home</Nav.Link>
-              <Nav.Link href="/App">search</Nav.Link>
+              <Nav.Link href="/App">Search</Nav.Link>
               <Nav.Link href="/Forms">Form</Nav.Link>
               <Nav.Link href="/Test">Test</Nav.Link>
               <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
@@ -32,7 +30,7 @@ const NavBar = () => {
             </Nav>
             <Nav>
               <Nav.Link href="#deets">More deets</Nav.Link>
-              <Nav.Link eventKey={2} href="#memes">
+              <Nav.Link eventKey={2} href="#eventmore">
                 Even more
               </Nav.Link>
             </Nav>
