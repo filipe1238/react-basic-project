@@ -221,11 +221,10 @@ const App = () => {
     } catch {
       dispatchStories({ type: 'STORIES_FETCH_FAILURE' });
     }
-
-
     //setIsError(true)
     //setStories(null);
   }, [url]);
+
   React.useEffect(() => {
     handleFetchStories(); // C
   }, [handleFetchStories]); // D
@@ -304,4 +303,6 @@ const App = () => {
 
   );
 }
+
+
 export default App;
